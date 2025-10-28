@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Status</title>
+    <link rel="icon" type="image/svg" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/css/stacks.min.css">
+    <link
+        rel="stylesheet"
+        href="/static/css/stacks-icons.css"
+    />
+</head>
+<body class="theme-dark p12">
+    <!-- Use s-page container for proper padding -->
+    <div class="s-page-container">
+        <div class="d-flex gs4 gsy fd-column">
+            <!-- Header section -->
+            <div class="flex--item">
+                <h1 class="fs-title fc-dark">Database Status</h1>
+            </div>
+            
+            <!-- Status card -->
+            <div class="flex--item s-card">
+                <p class="fs-body2 fc-dark">
+                    Database is: 
+                    <span class="s-badge {% if db_status == 'connected' %}bg-green-100 fc-green-700{% else %}bg-red-100 fc-red-700{% endif %}">
+                        {{ db_status }}
+                    </span>
+                </p>
+                
+                {% if error %}
+                <div class="s-notice s-notice__danger mt8">
+                    <strong>Error:</strong> {{ error }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex--item d-flex gs4">
+                <button class="s-btn s-btn__outlined" onclick="checkAPI()">
+                    Check API
+                </button>
+            </div>
+            <!-- API Result -->
+            <div id="api-result" class="flex--item"></div>
+        </div>
+    </div>
+    
+
+    <script>
+        async function checkAPI() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                const resultDiv = document.getElementById('api-result');
+                
+                // Use Stacks alert component for API results
+                resultDiv.innerHTML = `
+                    <div class="s-alert s-alert__info">
+                        <h3 class="fs-body3">API Response:</h3>
+                        <pre class="p8 ba bc-black-100 bg-white">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('api-result').innerHTML = `
+                    <div class="s-notice s-notice__danger">
+                        API Error: ${error.message}
+                    </div>
+                `;
+            }
+        }
+    </script>
+
+    <script src="/static/js/stacks.min.js"></script>
+    <script src="/static/js/browser.umd.js"></script> <!-- fix flickering of icons while loading js -->
+</body>
+</html>
