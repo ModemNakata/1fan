@@ -5,3 +5,6 @@ asyncpg
 alembic
 python-dotenv
 jinja2
+pydantic
+pydantic[email]
+passlib[bcrypt]

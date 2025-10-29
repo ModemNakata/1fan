@@ -1,21 +1,26 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-
-# from fastapi.staticfiles import StaticFiles
-from sqlalchemy.ext.asyncio import create_async_engine
+from contextlib import asynccontextmanager
 from sqlalchemy import text
+from database import engine
+from routers import users
 import os
 
 # Database configuration
-DATABASE_URL = os.getenv(
-    "DATABASE_URL"  # , "postgresql+asyncpg://user:password@db:5432/mydatabase"
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Create async engine
-engine = create_async_engine(DATABASE_URL)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    yield
+    # Shutdown
+    await engine.dispose()
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
+
+# Include routers
+app.include_router(users.router, prefix="/users", tags=["users"])
 
 # Mount static files
 # (if you want FastAPI to serve them too, but nginx is better)
