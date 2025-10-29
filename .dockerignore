@@ -18,7 +18,7 @@ venv/
 env/
 
 # Static files (if you want nginx to handle them separately)
-/static/
+
 
 # IDE
 .vscode/

@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database Status</title>
     <link rel="icon" type="image/svg" href="/static/favicon.svg">
-    <link rel="stylesheet" href="/static/css/stacks.min.css">
-    <link
-        rel="stylesheet"
-        href="/static/css/stacks-icons.css"
-    />
+    <link rel="stylesheet" href="/static/node_modules/@stackoverflow/stacks/dist/css/stacks.min.css">
+    <link rel="stylesheet" href="/static/node_modules/@stackoverflow/stacks-icons/dist/icons.css">
 </head>
 <body class="theme-dark p12">
     <!-- Use s-page container for proper padding -->
@@ -19,7 +16,9 @@
             <div class="flex--item">
                 <h1 class="fs-title fc-dark">Database Status</h1>
             </div>
-            
+
+
+
             <!-- Status card -->
             <div class="flex--item s-card">
                 <p class="fs-body2 fc-dark">
@@ -35,7 +34,6 @@
                 </div>
                 {% endif %}
             </div>
-            
             <!-- Actions -->
             <div class="flex--item d-flex gs4">
                 <button class="s-btn s-btn__outlined" onclick="checkAPI()">
@@ -60,6 +58,7 @@
                     <div class="s-alert s-alert__info">
                         <h3 class="fs-body3">API Response:</h3>
                         <pre class="p8 ba bc-black-100 bg-white">${JSON.stringify(data, null, 2)}</pre>
+                        <span class="svg-icon-bg iconSmileyAdd"></span>
                     </div>
                 `;
             } catch (error) {
@@ -72,7 +71,5 @@
         }
     </script>
 
-    <script src="/static/js/stacks.min.js"></script>
-    <script src="/static/js/browser.umd.js"></script> <!-- fix flickering of icons while loading js -->
 </body>
 </html>

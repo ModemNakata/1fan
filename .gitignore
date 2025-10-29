@@ -5,6 +5,7 @@
 
 # Static files (if you want to ignore generated static files)
 /static/*
+!/static/node_modules
 !/static/README.md
 
 # But keep the structure - you might want to keep some static files
