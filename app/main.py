@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
@@ -29,7 +29,10 @@ templates = Jinja2Templates(directory="templates")
 # Favicon redirect
 @app.get("/favicon.ico")
 async def favicon_redirect():
-    return RedirectResponse(url="/static/favicon.svg")
+    return RedirectResponse(
+        url="/static/favicon-moon100x3_886799.svg",
+        status_code=status.HTTP_301_MOVED_PERMANENTLY,
+    )  # default 307 moved temporary
 
 
 @app.get("/", response_class=HTMLResponse)
