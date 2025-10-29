@@ -69,3 +69,7 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+
+
+app/alembic/versions/
