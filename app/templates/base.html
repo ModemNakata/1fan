@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!--<link rel="icon" type="image/svg" href="/static/favicon-moon100x3_886799.svg">-->
+    <link rel="stylesheet" href="/static/node_modules/@stackoverflow/stacks/dist/css/stacks.min.css">
+    <link rel="stylesheet" href="/static/node_modules/@stackoverflow/stacks-icons/dist/icons.css">
+</head>
+<body class="theme-dark p12">
+    {% include "_spinner.html" %}
+
+    <!-- Use s-page container for proper padding -->
+    <div class="s-page-container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script type="module">
+        import { Application, Controller } from '/static/node_modules/@hotwired/stimulus/dist/stimulus.js';
+
+        class LoadingController extends Controller {
+            connect() {
+                window.addEventListener('load', () => {
+                    this.element.style.display = 'none';
+                });
+            }
+        }
+
+        const application = Application.start();
+        application.register('loading', LoadingController);
+    </script>
+</body>
+</html>

@@ -12,8 +12,10 @@ AsyncSessionLocal = sessionmaker(
     expire_on_commit=False,
 )
 
+
 class Base(DeclarativeBase):
     pass
+
 
 async def get_db():
     async with AsyncSessionLocal() as session:
@@ -21,3 +23,4 @@ async def get_db():
             yield session
         finally:
             await session.close()
+

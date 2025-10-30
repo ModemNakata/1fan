@@ -4,11 +4,13 @@ from fastapi.templating import Jinja2Templates
 from contextlib import asynccontextmanager
 from sqlalchemy import text
 from database import engine
-from routers import users
+
+# from routers import ...
 import os
 
 # Database configuration
 DATABASE_URL = os.getenv("DATABASE_URL")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,10 +19,11 @@ async def lifespan(app: FastAPI):
     # Shutdown
     await engine.dispose()
 
+
 app = FastAPI(lifespan=lifespan)
 
 # Include routers
-app.include_router(users.router, prefix="/users", tags=["users"])
+# app.include_router(....router, prefix="/...", tags=["..."])
 
 # Mount static files
 # (if you want FastAPI to serve them too, but nginx is better)
@@ -53,17 +56,5 @@ async def get_database_status(request: Request):
         error = str(e)
 
     return templates.TemplateResponse(
-        "index.html", {"request": request,
-                       "db_status": db_status, "error": error}
+        "index.html", {"request": request, "db_status": db_status, "error": error}
     )
-
-
-@app.get("/api/status")
-async def api_status():
-    """JSON endpoint for API clients"""
-    try:
-        async with engine.begin() as conn:
-            await conn.execute(text("SELECT 1"))
-        return {"database_status": "connected"}
-    except Exception as e:
-        return {"database_status": "disconnected", "error": str(e)}
