@@ -1,7 +1,302 @@
 {% extends "base.html" %}
 
-{% block title %}1Fan{% endblock %}
+{% block title %}1Fan - Support Creators with Cryptocurrency{% endblock %}
 
 {% block content %}
-test
+<div class="split-layout">
+    <!-- Left Side - Benefits -->
+    <div class="left-side">
+        <div class="benefits-content">
+            <h1 class="brand-title">1Fan</h1>
+            <p class="tagline">Support creators worldwide with cryptocurrency</p>
+            
+            <div class="benefits-list">
+                <!-- Benefit 1 -->
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌍</div>
+                    <div class="benefit-text">
+                        <h3>Borderless Payments</h3>
+                        <p>Send and receive support globally without banks, borders, or restrictions. Cryptocurrency enables instant worldwide transactions.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-text">
+                        <h3>Low Fees</h3>
+                        <p>Keep more of what you earn. Our crypto-based platform has significantly lower fees than traditional payment processors.</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-text">
+                        <h3>Privacy First</h3>
+                        <p>Your financial privacy matters. Crypto transactions provide discretion for both creators and supporters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- learn more / how-it-works section + sequence of links (dmca, privacy policy, etc) -->
+
+        </div>
+    </div>
+
+    <!-- Right Side - Registration Form -->
+    <div class="right-side">
+        <div class="form-wrapper">
+            <div class="form-card">
+                <h2>Get Started</h2>
+                <form class="registration-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Choose your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+                
+                <p class="signin-link">Already have an account? <a href="/login">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Landing page specific styles */
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%) !important;
+        background-size: 400% 400% !important;
+        animation: gradientShift 15s ease infinite !important;
+        overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .s-page-container {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .split-layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    .left-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 40px;
+        color: white;
+    }
+
+    .benefits-content {
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .brand-title {
+        font-size: 4rem;
+        font-weight: 900;
+        margin-bottom: 16px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .tagline {
+        font-size: 1.5rem;
+        margin-bottom: 60px;
+        opacity: 0.95;
+        font-weight: 300;
+    }
+
+    .benefits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .benefit-item {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    .benefit-icon {
+        font-size: 3rem;
+        flex-shrink: 0;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    .benefit-text h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .benefit-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .right-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-wrapper {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .form-card {
+        background: white;
+        padding: 48px 40px;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-card h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        color: #1a1a1a;
+        text-align: center;
+    }
+
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .submit-btn {
+        margin-top: 8px;
+        padding: 16px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+    .signin-link {
+        margin-top: 24px;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+    .signin-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .signin-link a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+        .split-layout {
+            flex-direction: column;
+        }
+
+        .left-side {
+            min-height: auto;
+            padding: 40px 24px;
+        }
+
+        .brand-title {
+            font-size: 3rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+        }
+
+        .benefit-text h3 {
+            font-size: 1.25rem;
+        }
+
+        .benefit-text p {
+            font-size: 0.9375rem;
+        }
+
+        .right-side {
+            padding: 40px 24px;
+            min-height: auto;
+        }
+
+        .form-card {
+            padding: 32px 24px;
+        }
+
+        .form-card h2 {
+            font-size: 1.75rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .brand-title {
+            font-size: 2.5rem;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+        }
+
+        .benefits-list {
+            gap: 32px;
+        }
+
+        .benefit-item {
+            gap: 16px;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+        }
+    }
+</style>
 {% endblock %}

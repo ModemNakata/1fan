@@ -44,17 +44,10 @@ async def favicon_redirect():
 
 
 @app.get("/", response_class=HTMLResponse)
-async def get_database_status(request: Request):
-    """Render template with database connection status"""
-    try:
-        async with engine.begin() as conn:
-            await conn.execute(text("SELECT 1"))
-        db_status = "connected"
-        error = None
-    except Exception as e:
-        db_status = "disconnected"
-        error = str(e)
+async def landing(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
-    return templates.TemplateResponse(
-        "index.html", {"request": request, "db_status": db_status, "error": error}
-    )
+
+@app.get("/me", response_class=HTMLResponse)
+async def profile(request: Request):
+    return templates.TemplateResponse("me.html", {"request": request})
